@@ -25,11 +25,13 @@ display = "_" * len(chosen_word)
 
 
 while attempts > 0 and "_" in display:
+    # play(attempts, display) + chosen_word before while
     guess = guessLetter()
     letter_locations = []
     clear()
     correct_display = list(display)
     for letter in chosen_word:
+        # checkGuess(chosen_word, guess)
         if letter == guess:
             # print("Right")
             letter_locations.append("right")
@@ -37,15 +39,16 @@ while attempts > 0 and "_" in display:
             # print("Wrong")
             letter_locations.append("wrong")
     for position in range(len(letter_locations)):
+        # updateDisplay(letter_locations, display)
         if letter_locations[position] == "right":
             correct_display[position] = guess
-            display = ''.join(correct_display)
+            display = ''.join(correct_display)  # Immutable strings workaround
     if "right" not in letter_locations and guess != "ERROR":
         attempts -= 1
         print("Wrong! Attempts left: ", end='')
         print(attempts)
     print(display)
-else:
+else:  # endScreen(play) -> replay
     if attempts == 0:
         print("You Lost, play again? (y/n)")
     else:
@@ -53,3 +56,6 @@ else:
 
 # TODO: ASCII database
 # refactor¿? -> PLAY AGAIN
+# programar en ESPAÑOL
+# settings menu
+# keypresses en vez de input¿?
