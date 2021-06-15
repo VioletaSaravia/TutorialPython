@@ -45,9 +45,11 @@ def partida():
             mano_pc.append(robar_carta())  # En realidad, el croupier roba
             # dos cartas al comienzo y sólo muestra una. Y roba primero¿?
             if sum(mano_jugadorx) > 21:
+                print(CARTAS_JUGADOR + str(mano_jugadorx))
                 print(LOSE)
                 return 0
             elif sum(mano_pc) > 21:
+                print(CARTAS_JUGADOR + str(mano_jugadorx))
                 print(WIN)
                 return 1
             print(CARTAS_JUGADOR + str(mano_jugadorx))
@@ -57,7 +59,7 @@ def partida():
             while sum(mano_pc) <= 16:
                 mano_pc.append(robar_carta())
             else:
-                print(CARTAS_PC + mano_pc)
+                print(CARTAS_PC + str(mano_pc))
                 if sum(mano_pc) >= 21 or sum(mano_pc) < sum(mano_jugadorx):
                     print(WIN)
                     return 1
@@ -77,12 +79,12 @@ def partida():
         nueva_mano = True if input(CONT_PART) == "y" else False
 
     print("Fin del Juego")      # Tendría que estar en menu_principal maybe¿?¿?
-    print("Tus victorias: " + victorias)
-    print("Tus derrotas: " + derrotas)
+    print("Tus victorias: " + str(victorias))
+    print("Tus derrotas: " + str(derrotas))
 
     if input(GAME_OVER) == "y":
         partida()
-    print("Adios!")
+    print("Adios!")             # Hasta acá
     return
 
 
