@@ -1,3 +1,6 @@
+"""
+Subasta Secreta
+"""
 MENSAJE_INICIAL = "=== BIENVENIDX A SUBASTA SECRETA ==="
 PEDIR_NOMBRE = "Cuál es tu nombre? "
 PEDIR_PUJA = "Cuál es tu puja? $"
@@ -18,14 +21,12 @@ def menu_principal():
         # TODO: LIMPIAR PANTALLA
         pujas = pujas | agregar_puja()
         cont = input(CONTINUAR)
-    else:
-        print(pujas)
-        ganadorx = calcular(pujas)
-        print("Ganó " + ganadorx[0] + " con una puja de $" + ganadorx[1])
+    print(pujas)
+    ganadorx = calcular(pujas)
+    print("Ganó " + ganadorx[0] + " con una puja de $" + ganadorx[1])
     if input(REINICIAR) == "y":
         return menu_principal()
-    else:
-        return print(ADIOS)
+    return print(ADIOS)
 
 
 def agregar_puja():
@@ -36,7 +37,7 @@ def calcular(pujas):
     ganadorx = ""
     puja_ganadorx = 0
     for nombre, puja in pujas.items():
-        if puja > ganadorx:
+        if int(puja) > int(puja_ganadorx):
             ganadorx = nombre
             puja_ganadorx = puja
     return (ganadorx, puja_ganadorx)
