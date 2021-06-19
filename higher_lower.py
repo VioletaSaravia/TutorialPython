@@ -2,8 +2,9 @@
 Día 14: Selenium Test
 
 Instagram ya no permite ver perfiles sin cuenta. Esto no funciona más. RIP :(
-(hasta que aprenda de OAuth al menos)
 """
+# TODO: https://stackoverflow.com/questions/28324261/using-selenium-in-python-to-enter-login-information-to-instagram
+
 
 # import selenium
 from selenium import webdriver
