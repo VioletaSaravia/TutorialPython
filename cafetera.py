@@ -41,11 +41,10 @@ def report():
     return menu()
 
 def hacer_cafe(cafe):
+    # breakpoint()
     for resource, amount in RESOURCES.items():
-        #breakpoint()
         if resource in MENU[cafe]['ingredients'].keys():
-            #breakpoint()
-            if amount <= MENU[cafe]['ingredients'][resource]:
+            if amount >= MENU[cafe]['ingredients'][resource]:
                 RESOURCES[resource] -= MENU[cafe]['ingredients'][resource]
             else:
                 return False
@@ -64,11 +63,11 @@ def dinero(cafe):
         cambio = total - MENU[cafe]['cost']
         print('Su cambio es ${}.'.format(cambio))
         return True
-#     print('Su dinero es insuficiente') # poner en menú
+    print('Su dinero es insuficiente') # poner en menú
     return False
 
 def menu():
-    prompt = input("What would you like? (espresso/latte/cappuccino): ")
+    prompt = input("Qué quiere tomar? (espresso/latte/cappuccino): ")
     if prompt == 'report':
         return report()
     if prompt == 'off':
