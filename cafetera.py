@@ -36,11 +36,13 @@ RESOURCES = {
 
 
 def report():
+    """ muestra los recursos disponibles """
     for resource, amount in RESOURCES.items():
         print('{}: {}'.format(resource, amount))
     return menu()
 
 def hacer_cafe(cafe):
+    """ Hace el café """
     # breakpoint()
     for resource, amount in RESOURCES.items():
         if resource in MENU[cafe]['ingredients'].keys():
@@ -53,6 +55,7 @@ def hacer_cafe(cafe):
 
 
 def dinero(cafe):
+    """ Calculador de vuelto """
     veinticinco = int(input("Monedas de 25?: "))
     diez = int(input("Monedas de 10?: "))
     cinco = int(input("Monedas de 5?: "))
@@ -63,10 +66,11 @@ def dinero(cafe):
         cambio = total - MENU[cafe]['cost']
         print('Su cambio es ${}.'.format(cambio))
         return True
-    print('Su dinero es insuficiente') # poner en menú
+    print('Su dinero es insuficiente. Dinero devuelto.') # poner en menú
     return False
 
 def menu():
+    """ Menu principal """
     prompt = input("Qué quiere tomar? (espresso/latte/cappuccino): ")
     if prompt == 'report':
         return report()
@@ -74,7 +78,7 @@ def menu():
         return print("Adios!")
     if dinero(prompt):
         if not hacer_cafe(prompt):
-            print('Insuficientes recursos.')
+            print('Insuficientes recursos. Dinero devuelto.')
     return menu()
 
 menu()

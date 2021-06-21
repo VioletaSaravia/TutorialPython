@@ -1,3 +1,5 @@
+import os
+
 MAX_PRIME = 100
 
 sieve = [True] * MAX_PRIME
@@ -8,3 +10,5 @@ for i as range(2, MAX_PRIME):
             sieve[j] = False
 
 asd = print "asd"
+
+os.path
