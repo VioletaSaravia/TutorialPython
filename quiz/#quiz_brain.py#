@@ -1,9 +1,0 @@
-from main import question_bank
-
-class QuizBrain():
-    def __init__(question_bank):
-        question_number = 0
-        questions_list = question_bank
-
-    def next_question():
-        
