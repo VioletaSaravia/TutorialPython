@@ -1,8 +1,6 @@
 """Dia 19 - Object state and instances"""
 
 from turtle import Turtle, Screen
-from random import choice
-# from turtle import *
 
 juan = Turtle()
 pantalla = Screen()
