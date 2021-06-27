@@ -23,34 +23,63 @@ class ExtractorRGB():
         #     if sum(color) >= 600 or sum(color) < 30:
         #         self.rgb.remove(color)
 
-class Dibujar():
-    pass
+class DibujarSpots():
+    def __init__(self, pantalla, ref, matriz_x, matriz_y):
+        self.dibujo = Turtle()
+        self.dibujo.pu()
+        self.dibujo.speed("fastest")
+        self.dibujo.hideturtle()
 
-spots = ExtractorRGB('spots.jpg', 20)
-spots.limpiar()
+        self.referencia = ExtractorRGB(ref, 20)
+        self.referencia.limpiar()
 
+        self.ratio_x = pantalla.window_width() / matriz_x
+        self.ratio_y = pantalla.window_height() / matriz_y
+        self.pos_x = self.ratio_x / 2
+        self.pos_y = self.ratio_y / 2
+
+        for x in range(matriz_x):
+            for y in range(matriz_y):
+                self.dibujo.goto(self.pos_x - 250, self.pos_y - 250)
+                self.dibujo.dot(50, choice(self.referencia.rgb))
+                self.pos_y += self.ratio_y
+            self.pos_x += self.ratio_x
+            self.pos_y = self.ratio_y / 2
+
+                
 pantalla = Screen()
 pantalla.colormode(255)         # ???
-
-nuevo_spots = Turtle()
-nuevo_spots.pu()
 pantalla.setup(500, 500)
-nuevo_spots.speed("fastest")
-nuevo_spots.hideturtle()
 
-matriz_x = 5
-matriz_y = 5
-ratio_x = (pantalla.window_width() / matriz_x)
-pos_x = ratio_x / 2
-ratio_y = (pantalla.window_height() / matriz_y)
-pos_y = ratio_y / 2
+referencia = input("Ingrese archivo de referencia: ")
+mx = int(input("Cantidad X de circulos: "))
+my = int(input("Cantidad Y de circulos: "))
+spots = DibujarSpots(pantalla, referencia, mx, my)
+
+# spots = ExtractorRGB('basico/spots.jpg', 20)
+# spots.limpiar()
+
+
+# nuevo_spots = Turtle()
+# nuevo_spots.pu()
+# pantalla.setup(500, 500)
+# nuevo_spots.speed("fastest")
+# nuevo_spots.hideturtle()
+
+# matriz_x = 5
+# matriz_y = 5
+# ratio_x = (pantalla.window_width() / matriz_x)
+# pos_x = ratio_x / 2
+# ratio_y = (pantalla.window_height() / matriz_y)
+# pos_y = ratio_y / 2
            
-for x in range(matriz_x):
-    for y in range(matriz_y):
-        nuevo_spots.goto(pos_x - 250, pos_y - 250)
-        nuevo_spots.dot(50, choice(spots.rgb))
-        pos_y += ratio_y
-    pos_x += ratio_x
-    pos_y = ratio_y / 2
+# for x in range(matriz_x):
+#     for y in range(matriz_y):
+#         nuevo_spots.goto(pos_x - 250, pos_y - 250)
+#         nuevo_spots.dot(50, choice(spots.rgb))
+#         pos_y += ratio_y
+#     pos_x += ratio_x
+#     pos_y = ratio_y / 2
 
 pantalla.exitonclick()
+
