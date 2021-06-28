@@ -126,7 +126,7 @@ def game(score = 0):
         setup()
         score = 0
     time.sleep(sleeptime)
-    return game(score)
+    return game(score) # NO USAR RECURSION -.-
 
 setup()
 game()
