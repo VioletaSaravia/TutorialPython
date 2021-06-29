@@ -99,7 +99,9 @@ def restart():
     comida.clear()
     set_pantalla()
 
-def game(score = 0):
+scoretxt = open('high_score.txt', 'r+')
+
+def game(score = 0, high_score = int(scoretxt.read()) if scoretxt.read() else 0):
     for tecla, accion in teclas.items():
         # condicional para no girar y avanzar a la vez
         pantalla.onkey(key=tecla, fun=accion)
@@ -108,8 +110,11 @@ def game(score = 0):
         comida.place()
         serpiente.append(Miembro())
         score += 1
-        tablero.clear()
-        tablero.write(f'Puntaje: {score}')
+        high_score = score if score > high_score else high_score
+        #scoretxt.truncate(0)
+        scoretxt.write(str(high_score))
+    tablero.clear()
+    tablero.write(f'Puntaje: {score} // Puntaje máximo: {high_score}')
         #sleeptime -= 0.01
     # Simplificar esto ->
     for miembro in serpiente[2:]:
@@ -126,7 +131,7 @@ def game(score = 0):
         setup()
         score = 0
     time.sleep(sleeptime)
-    return game(score) # NO USAR RECURSION -.-
+    return game(score, high_score) # NO USAR RECURSION -.-
 
 setup()
 game()
