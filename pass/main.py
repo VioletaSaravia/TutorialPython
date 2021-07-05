@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter.ttk import *
 from random import choice
 import string
+import json
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
@@ -9,19 +10,25 @@ CHARS = string.digits + string.punctuation + string.ascii_letters
 
 def generate_password(size = 12, chars = CHARS):
     pass_gen = ''.join([choice(chars) for _ in range(size)])
-    return password.insert(0, pass_gen)
+    password.delete(0, END)
+    password.insert(0, pass_gen)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
-with open('log.txt') as log:
-    DB = log.read()
+fields = ['web', 'user', 'password']
 
 def save_password():
-    global DB
-    DB = DB.join([web.get(), user.get(), password.get()]) # usar pandas
-    with open('logo.txt', 'w') as log:
-        log.write(DB)
-        log.close()
+    DB = { 'Web' : web.get(),
+           'Username' : user.get(),
+           'Password' : password.get()
+          }  # usar pandas
+    with open('log.txt', 'a') as log:
+        log.write(json.dumps(DB))
+    # web.delete(0, END)
+    # user.delete(0, END)
+    # password.delete(0, END)
+    for field in fields:
+        exec(f'{field}.delete(0, END)')
     return
 
 # ---------------------------- UI SETUP ------------------------------- #
@@ -31,11 +38,12 @@ TITULO = "Password Manager v0.1"
 ventana = Tk()
 ventana.title(TITULO)
 ventana.config(padx = 20, pady = 20) #bg='white'
+
 canvas = Canvas(width = 200, height = 200)
-#canvas.pack()
 logo = PhotoImage(file='logo.png')
 canvas.create_image(100, 100, image=logo)
 canvas.grid(column=0, row=0, columnspan=4)
+
 web_label = Label(text="Website: ")
 web_label.grid(column=0, row=1)
 web = Entry(ventana)
