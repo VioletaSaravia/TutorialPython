@@ -9,13 +9,11 @@ import json
 CHARS = string.digits + string.punctuation + string.ascii_letters
 
 def generate_password(size = 12, chars = CHARS):
-    pass_gen = ''.join([choice(chars) for _ in range(size)])
+    pass_gen = ''.join([choice(chars) for _ in range(size)]) # .join('\n')
     password.delete(0, END)
     password.insert(0, pass_gen)
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
-
-fields = ['web', 'user', 'password']
+# ------------------------------ SAVE PASSWORD ---------------------------------- #
 
 def save_password():
     DB = { 'Web' : web.get(),
@@ -27,11 +25,12 @@ def save_password():
     # web.delete(0, END)
     # user.delete(0, END)
     # password.delete(0, END)
+    fields = ['web', 'user', 'password']
     for field in fields:
         exec(f'{field}.delete(0, END)')
     return
 
-# ---------------------------- UI SETUP ------------------------------- #
+# --------------------------------- UI SETUP ------------------------------------ #
 
 TITULO = "Password Manager v0.1"
 
