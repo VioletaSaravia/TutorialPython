@@ -20,8 +20,16 @@ def save_password():
            'Username' : user.get(),
            'Password' : password.get()
           }  # usar pandas
-    with open('log.txt', 'a') as log:
-        log.write(json.dumps(DB))
+    try:
+        with open('log.json', 'a') as log:
+            log.write(json.dumps(DB))
+    except FileNotFoundError as filenotfound:
+        create_yes = input(f'{filenotfound} doesn\'t exist. Create? [y/n] ')
+        if create_yes == 'y':
+            with open('log.json', 'w') as log:
+                log.write(json.dumps(DB)) # !!! load(), update() y dump ()
+                                          # en vez de dump
+                #json.dumps(DB, log)
     # web.delete(0, END)
     # user.delete(0, END)
     # password.delete(0, END)
@@ -29,6 +37,11 @@ def save_password():
     for field in fields:
         exec(f'{field}.delete(0, END)')
     return
+# ---------------------------------- LOOKUP ------------------------------------- #
+
+def lookup():
+    database = json.load('log.json')
+    breakpoint()
 
 # --------------------------------- UI SETUP ------------------------------------ #
 
