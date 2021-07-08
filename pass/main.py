@@ -7,7 +7,7 @@ import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 CHARS = string.digits + string.punctuation + string.ascii_letters
-
+dfhdfh = 3
 def generate_password(size = 12, chars = CHARS):
     pass_gen = ''.join([choice(chars) for _ in range(size)]) # .join('\n')
     password.delete(0, END)
