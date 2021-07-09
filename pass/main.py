@@ -21,12 +21,12 @@ def save_password():
            'Password' : password.get()
           }  # usar pandas
     try:
-        with open('log.json', 'a') as log:
+        with open('pass/log.json', 'a') as log:
             log.write(json.dumps(DB))
     except FileNotFoundError as filenotfound:
         create_yes = input(f'{filenotfound} doesn\'t exist. Create? [y/n] ')
         if create_yes == 'y':
-            with open('log.json', 'w') as log:
+            with open('pass/log.json', 'w') as log:
                 log.write(json.dumps(DB)) # !!! load(), update() y dump ()
                                           # en vez de dump
                 #json.dumps(DB, log)
@@ -40,7 +40,7 @@ def save_password():
 # ---------------------------------- LOOKUP ------------------------------------- #
 
 def lookup():
-    database = json.load('log.json')
+    database = json.load('pass/log.json')
     breakpoint()
 
 # --------------------------------- UI SETUP ------------------------------------ #
@@ -52,7 +52,7 @@ ventana.title(TITULO)
 ventana.config(padx = 20, pady = 20) #bg='white'
 
 canvas = Canvas(width = 200, height = 200)
-logo = PhotoImage(file='logo.png')
+logo = PhotoImage(file='pass/logo.png')
 canvas.create_image(100, 100, image=logo)
 canvas.grid(column=0, row=0, columnspan=4)
 
