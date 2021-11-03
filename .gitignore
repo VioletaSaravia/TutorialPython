@@ -2,3 +2,4 @@
 .venv
 .gitignore
 pass/log.json
+__pycache__/
