@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from markupsafe import escape
 app = Flask(__name__)
 
@@ -7,4 +7,4 @@ def hello_world(apellido):
 	return f'Hola {escape(apellido)}'
 
 if __name__ == "__main__":
-	app.run()
+	app.run(debug=True)
